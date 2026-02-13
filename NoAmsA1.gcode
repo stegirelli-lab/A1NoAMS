@@ -1,6 +1,6 @@
 ;== date: 20260213  10:48=======================
 ;modificate coordinate del WIPE a fine programma
-;commento Caria
+
 M1007 S0
 
 G392 S0
@@ -241,4 +241,5 @@ M622 J1
 M623
 
 G392 S0
+
 M1007 S1
