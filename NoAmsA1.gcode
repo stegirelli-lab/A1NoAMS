@@ -19,7 +19,7 @@ M106 P2 S0
 {if old_filament_temp > 142 && next_extruder < 255}
 M104 S[old_filament_temp]
 {endif}
-
+;==start cutting filament, comment if you don wanto to automate this step===
 G1 X267 F18000 ; moves next to cutting position
 M17 S ; saves the default stepper current values
 M400 ; waits for commands to complete
@@ -28,7 +28,7 @@ G1 X280 F400 ;G1 X279 F400 ; provare con 280 o più -cuts filament a little slow
 G1 X267 F500 ; returns back to position before cutting, ADDED: finetuning by pakonambawan
 M400 ; waits for commands to complete
 M17 R ; restores saved stepper current values
-
+;==end cutting
 M620.1 E F[old_filament_e_feedrate] T{nozzle_temperature_range_high[previous_extruder]}
 M620.10 A0 F[old_filament_e_feedrate]
 T[next_extruder]
