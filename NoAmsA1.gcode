@@ -1,4 +1,5 @@
-;== date: 20260212  21:48=======================
+;== date: 20260213  10:48=======================
+;modificate coordinate del WIPE a fine programma
 M1007 S0
 
 G392 S0
@@ -22,7 +23,7 @@ G1 X267 F18000 ; moves next to cutting position
 M17 S ; saves the default stepper current values
 M400 ; waits for commands to complete
 M17 X1 ; sets x stepper current higher
-G1 X279 F400 ; provare con 280 o più -cuts filament a little slower, ADDED: finetuning by pakonambawan
+G1 X280 F400 ;G1 X279 F400 ; provare con 280 o più -cuts filament a little slower, ADDED: finetuning by pakonambawan
 G1 X267 F500 ; returns back to position before cutting, ADDED: finetuning by pakonambawan
 M400 ; waits for commands to complete
 M17 R ; restores saved stepper current values
@@ -36,7 +37,7 @@ M620.10 A1 F[new_filament_e_feedrate] L[flush_length] H[nozzle_diameter] T[nozzl
 ;G1 Y128 F9000 ; REMOVED from original GCODE
 ; -- BEGIN ADDED LINES --
 G1 X0 Y127 F18000 ; modified from X90
-G1 X-48.2 F9000;G1 X-13.5 F9000 ===modificata da me
+G1 X-48.2 F9000;G1 X-13.5 F9000 ==modified by me 2602122130
 G1 E-13.5 F900
 
 ; pause for user to load and press resume
@@ -81,12 +82,12 @@ M1002 set_filament_type:{filament_type[next_extruder]}
 M400
 M106 P1 S178
 M400 S3
-G1 X-38.2 F18000
-G1 X-48.2 F3000
-G1 X-38.2 F18000
-G1 X-48.2 F3000
-G1 X-38.2 F18000
-G1 X-48.2 F3000
+G1 X-28.5 F30000 ;==modified by me 2602122130
+G1 X-48.2 F3000  ;==modified by me 2602122130
+G1 X-28.5 F30000 ;==modified by me 2602122130
+G1 X-48.2 F3000  ;==modified by me 2602122130
+G1 X-28.5 F30000  ;==modified by me 2602122130
+G1 X-48.2 F3000  ;==modified by me 2602122130
 M400
 M106 P1 S0
 {endif}
@@ -94,7 +95,7 @@ M106 P1 S0
 {if flush_length_2 > 1}
 M106 P1 S60
 ; FLUSH_START #2
-;=aggiunte da me per riportarel'estrusore in area di scarico
+;==modified by me 2602122130 per riportarel'estrusore in area di scarico
 G1 X-48.2 F300
 M400
 ;=fine aggiunta
@@ -114,23 +115,23 @@ G1 E[new_retract_length_toolchange] F300
 {endif}
 
 {if flush_length_2 > 45 && flush_length_3 > 1}
-; WIPE
+; WIPE #2
 M400
 M106 P1 S178
 M400 S3
-G1 X-38.2 F18000
-G1 X-48.2 F3000
-G1 X-38.2 F18000
-G1 X-48.2 F3000
-G1 X-38.2 F18000
-G1 X-48.2 F3000
+G1 X-28.5 F30000 ;==modified by me 2602122130
+G1 X-48.2 F3000   ;==modified by me 2602122130
+G1 X-28.5 F30000 ;==modified by me 2602122130
+G1 X-48.2 F3000 ;==modified by me 2602122130
+G1 X-28.5 F30000 ;==modified by me 2602122130
+G1 X-48.2 F3000 ;==modified by me 2602122130
 M400
 M106 P1 S0
 {endif}
 
 {if flush_length_3 > 1}
 M106 P1 S60
-; FLUSH_START
+; FLUSH_START #3
 G1 E{flush_length_3 * 0.18} F{new_filament_e_feedrate}
 G1 E{flush_length_3 * 0.02} F50
 G1 E{flush_length_3 * 0.18} F{new_filament_e_feedrate}
@@ -147,23 +148,23 @@ G1 E[new_retract_length_toolchange] F300
 {endif}
 
 {if flush_length_3 > 45 && flush_length_4 > 1}
-; WIPE
+; WIPE #3
 M400
 M106 P1 S178
 M400 S3
-G1 X-38.2 F18000;G1 X-3.5 F18000
-G1 X-48.2 F3000;G1 X-13.5 F3000
-G1 X-38.2 F18000;G1 X-3.5 F18000
-G1 X-48.2 F3000;G1 X-13.5 F3000
-G1 X-38.2 F18000;G1 X-3.5 F18000
-G1 X-48.2 F3000;G1 X-13.5 F3000
+G1 X-28.5 F30000;G1 X-3.5 F18000 ==modified by me 2602122130
+G1 X-48.2 F3000;G1 X-13.5 F3000 ==modified by me 2602122130
+G1 X-28.5 F30000;G1 X-3.5 F18000 ==modified by me 2602122130
+G1 X-48.2 F3000;G1 X-13.5 F3000 ==modified by me 2602122130
+G1 X-28.5 F30000;G1 X-3.5 F18000 ==modified by me 2602122130
+G1 X-48.2 F3000;G1 X-13.5 F3000 ==modified by me 2602122130
 M400
 M106 P1 S0
 {endif}
 
 {if flush_length_4 > 1}
 M106 P1 S60
-; FLUSH_START
+; FLUSH_START #4
 G1 E{flush_length_4 * 0.18} F{new_filament_e_feedrate}
 G1 E{flush_length_4 * 0.02} F50
 G1 E{flush_length_4 * 0.18} F{new_filament_e_feedrate}
@@ -189,14 +190,14 @@ G1 E-[new_retract_length_toolchange] F1800
 M400
 M106 P1 S178
 M400 S3
-G1 X-38.2 F18000;G1 X-3.5 F18000
-G1 X-48.2 F3000;G1 X-13.5 F3000
-G1 X-38.2 F18000;G1 X-3.5 F18000
-G1 X-48.2 F3000;G1 X-13.5 F3000
-G1 X-38.2 F18000;G1 X-3.5 F18000
-G1 X-48.2 F3000;G1 X-13.5 F3000
-G1 X-38.2 F18000;G1 X-3.5 F18000
-G1 X-48.2 F3000;G1 X-13.5 F3000
+G1 X-28.5 F30000;G1 X-3.5 F18000 ==modified by me 2602122130
+G1 X-48.2 F3000;G1 X-13.5 F3000 ==modified by me 2602122130
+G1 X-28.5 F30000;G1 X-3.5 F18000 ==modified by me 2602122130
+G1 X-48.2 F3000;G1 X-13.5 F3000 ==modified by me 2602122130
+G1 X-28.5 F30000;G1 X-3.5 F18000 ==modified by me 2602122130
+G1 X-48.2 F3000;G1 X-13.5 F3000 ==modified by me 2602122130
+G1 X-28.5 F30000;G1 X-3.5 F18000 ==modified by me 2602122130
+G1 X-48.2 F3000;G1 X-13.5 F3000 ==modified by me 2602122130
 M400
 G1 Z{max_layer_z + 3.0} F3000
 M106 P1 S0
@@ -228,11 +229,11 @@ M622 J1
   M106 P1 S178
   M400 S7
   G1 X0 F18000
-  G1 X-13.5 F3000
+  G1 X-48.2 F3000;G1 X-13.5 F3000 ==modified by me 2602131048
   G1 X0 F18000 ;wipe and shake
-  G1 X-13.5 F3000
+  G1 X-48.2 F3000;G1 X-13.5 F3000 ==modified by me 2602131048
   G1 X0 F12000 ;wipe and shake
-  G1 X-13.5 F3000
+  G1 X-48.2 F3000;G1 X-13.5 F3000 ==modified by me 2602131048
   G1 X0 F12000 ;wipe and shake
   M400
   M106 P1 S0 
