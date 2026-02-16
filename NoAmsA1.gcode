@@ -24,7 +24,7 @@ G1 X267 F18000 ; moves next to cutting position
 M17 S ; saves the default stepper current values
 M400 ; waits for commands to complete
 M17 X1 ; sets x stepper current higher
-G1 X285 F400 ;G1 X279 F400 ; provare con 280 o più -cuts filament a little slower, ADDED: finetuning by pakonambawan
+G1 X285 F400 ;G1 X279 F400 ; provare con 280 o più -cuts filament a little slower
 G1 X267 F500 ; returns back to position before cutting, ADDED: finetuning by pakonambawan
 M400 ; waits for commands to complete
 M17 R ; restores saved stepper current values
@@ -243,4 +243,5 @@ M623
 G392 S0
 
 M1007 S1
+
 
